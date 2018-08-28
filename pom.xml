@@ -14,8 +14,10 @@
         <module>fastjson-spring-boot</module>
         <module>redis-cache-spring-boot</module>
         <module>jpa-plus-spring-boot</module>
-        
+
         <module>kaptcha-spring-boot</module>
+        <module>shiro-freemarker-tags</module>
+        <module>mybatis-kit-spring-boot</module>
     </modules>
 
     <parent>
@@ -36,6 +38,7 @@
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <mybatis-plus.version>2.3</mybatis-plus.version>
         <shiro.version>1.4.0</shiro.version>
+        <mybatis.version>1.3.2</mybatis.version>
         <fastjson.version>1.2.47</fastjson.version>
         <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
         <druid.version>1.1.9</druid.version>
@@ -45,12 +48,14 @@
         <velocity.version>1.7</velocity.version>
         <beetl.version>2.8.5</beetl.version>
 
-        <kaptcha.version>2.0.0</kaptcha.version>
         <zxing.version>3.2.1</zxing.version>
         <swagger.version>2.9.2</swagger.version>
-        <commons-lang3.version>3.7</commons-lang3.version>
         <jwt.version>0.9.0</jwt.version>
         <hutool.version>4.1.1</hutool.version>
+
+        <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-lang3.version>3.7</commons-lang3.version>
+        <protostuff.version>1.1.2</protostuff.version>
     </properties>
 
     <!--依赖管理-->
@@ -110,6 +115,32 @@
                 <artifactId>mybatis-plus-generate</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+            <!--mybatis-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!--mybatis逆向工程-->
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.version}</version>
+                <scope>compile</scope>
+                <optional>true</optional>
+            </dependency>
+            <!--mapper 接口模版-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>2.0.2</version>
+            </dependency>
+            <!--pagehelper分页工具-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.3</version>
+            </dependency>
 
             <!--数据库-->
             <dependency>
@@ -128,13 +159,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-
-            <!--本地打包验证码-->
-            <dependency>
-                <groupId>org.tc.kaptcha</groupId>
-                <artifactId>kaptcha-spring-boot-starter</artifactId>
-                <version>${kaptcha.version}</version>
             </dependency>
 
             <!--ehcache-->
@@ -178,6 +202,11 @@
                 <version>${swagger.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
