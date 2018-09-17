@@ -39,6 +39,7 @@ public class RedisConfig {
 
     /**
      * string redis模板
+     *
      * @param connectionFactory
      * @return
      * @throws UnknownHostException
@@ -58,12 +59,10 @@ public class RedisConfig {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
 
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(30)).disableCachingNullValues();
         //在这里替换为自定义序列化
         config = config.serializeValuesWith(RedisSerializationContext.SerializationPair
                 .fromSerializer(protoStuffRedisSerializer()));
-        config.entryTtl(Duration.ofSeconds(30));
-
         //初始化一个RedisCacheWriter
         RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(connectionFactory);
         //初始化RedisCacheManager
@@ -102,6 +101,5 @@ public class RedisConfig {
             }
         };
     }
-
 
 }

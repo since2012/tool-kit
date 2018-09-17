@@ -43,7 +43,7 @@ public interface IBaseService<T> {
      * @param entity
      * @return
      */
-    public boolean insertUseGeneratedKeys(T entity);
+    public boolean insertAutoGenPK(T entity);
 
     /**
      * 保存一个实体，null的属性不会保存，会使用数据库默认值
@@ -68,7 +68,7 @@ public interface IBaseService<T> {
      * @param entityList
      * @return
      */
-    boolean insertList(List<T> entityList);
+    boolean insertListAutoGenPK(List<T> entityList);
 
     /**
      * 插入或更新
@@ -113,7 +113,7 @@ public interface IBaseService<T> {
      *
      * @return boolean
      */
-    public boolean deleteByIn(Class<?> entityClass, String field, List<Object> value);
+    public boolean deleteByIn(Class<?> entityClass, String field, Iterable<Object> values);
 
     /**
      * <p>
@@ -145,7 +145,10 @@ public interface IBaseService<T> {
      */
     T selectByPK(Object pk);
 
-
+    /**
+     * 查询所有
+     * @return
+     */
     List<T> selectAll();
 
     /**
@@ -156,11 +159,11 @@ public interface IBaseService<T> {
     /**
      * 根据 字段 查询
      */
-    public List<T> selectByIn(Class<?> entityClass, String field, List<Object> value);
+    public List<T> selectByIn(Class<?> entityClass, String field, Iterable<Object> values);
 
     /**
      * 翻页查询
      */
-    PageInfo<T> selectPage(Example example, int pageNum, int pageSize);
+    PageInfo<T> selectPageByExample(Example example, int pageNo, int pageSize);
 
 }

@@ -30,9 +30,6 @@ import java.util.List;
  * <p>
  * IBaseService 实现类（ 泛型：M 是 mapper 对象，T 是实体 ， PK 是主键泛型 ）
  * </p>
- *
- * @author hubin
- * @Date 2016-04-20
  */
 public class BaseServiceImpl<M extends MyMapper<T>, T> implements IBaseService<T> {
 
@@ -57,7 +54,7 @@ public class BaseServiceImpl<M extends MyMapper<T>, T> implements IBaseService<T
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean insertUseGeneratedKeys(T entity) {
+    public boolean insertAutoGenPK(T entity) {
         return retBool(baseMapper.insertUseGeneratedKeys(entity));
     }
 
@@ -75,7 +72,7 @@ public class BaseServiceImpl<M extends MyMapper<T>, T> implements IBaseService<T
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean insertList(List<T> entityList) {
+    public boolean insertListAutoGenPK(List<T> entityList) {
         if (CollectionUtils.isEmpty(entityList)) {
             throw new IllegalArgumentException("Error: entityList must not be empty");
         }
@@ -124,10 +121,10 @@ public class BaseServiceImpl<M extends MyMapper<T>, T> implements IBaseService<T
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public boolean deleteByIn(Class<?> entityClass, String field, List<Object> value) {
+    public boolean deleteByIn(Class<?> entityClass, String field, Iterable<Object> values) {
         Example example = new Example(entityClass);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andIn(field, value);
+        criteria.andIn(field, values);
         int count = baseMapper.deleteByExample(example);
         return retBool(count);
     }
@@ -164,18 +161,18 @@ public class BaseServiceImpl<M extends MyMapper<T>, T> implements IBaseService<T
     }
 
     @Override
-    public List<T> selectByIn(Class<?> entityClass, String field, List<Object> value) {
+    public List<T> selectByIn(Class<?> entityClass, String field, Iterable<Object> values) {
         Example example = new Example(entityClass);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andIn(field, value);
+        criteria.andIn(field, values);
         List<T> list = baseMapper.selectByExample(example);
         return list;
     }
 
     @Override
-    public PageInfo<T> selectPage(Example example, int pageNum, int pageSize) {
+    public PageInfo<T> selectPageByExample(Example example, int pageNo, int pageSize) {
         // 开始分页
-        PageHelper.startPage(pageNum, pageSize);
+        PageHelper.startPage(pageNo, pageSize);
         List<T> list = baseMapper.selectByExample(example);
         //用PageInfo对结果进行包装
         PageInfo<T> page = new PageInfo<T>(list);
