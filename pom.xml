@@ -15,7 +15,6 @@
         <module>redis-kit</module>
         <module>jpa-kit</module>
 
-        <module>kaptcha-kit</module>
         <module>shiro-freemarker-tags</module>
         <module>mybatis-kit</module>
     </modules>
