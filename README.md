@@ -8,7 +8,6 @@
 ##模块介绍
 
 ```
-fastjson-kit:springboot中注入fastjson
 jpa-kit:封装通用jpa
 mybatis-kit:封装通用mybatis，集成分页插件
 redis-kit:封装操作接口，采用自定义序列化方案

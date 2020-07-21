@@ -11,7 +11,6 @@
 
     <!--子模块-->
     <modules>
-        <module>fastjson-kit</module>
         <module>redis-kit</module>
         <module>jpa-kit</module>
 
@@ -95,11 +94,6 @@
                 <artifactId>jpa-kit</artifactId>
                 <version>${tool.kit.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.mark.demo</groupId>
-                <artifactId>fastjson-kit</artifactId>
-                <version>${tool.kit.version}</version>
-            </dependency>
 
             <!--spring-boot全家桶-->
             <dependency>
@@ -154,12 +148,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
-            </dependency>
-            <!--fastjson-->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
             </dependency>
 
             <!--模板引擎-->
